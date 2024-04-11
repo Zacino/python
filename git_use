@@ -1,3 +1,6 @@
+参考文档  https://tsejx.github.io/devops-guidebook/code/git/
+
+
 // 获取当前用户
 git config user.email
 git config user.name
