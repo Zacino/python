@@ -1,0 +1,39 @@
+参考文档  https://tsejx.github.io/devops-guidebook/code/git/
+
+
+// 获取当前用户
+git config user.email
+git config user.name
+
+// 修改
+git config --global user.name "win"
+...
+
+
+step 1
+    git init
+step 2
+    git remote add <name> <url>  //添加一个新的远程仓库。指定一个远程仓库的名称和URL
+    git remote -v //列出当前仓库中已配置的远程仓库，并显示它们的 URL
+    详细见git remote语法
+step 3
+    git status
+step 4
+    git add *
+step 5
+    git commit -m <description>
+step 6
+    git checkout -b zzy_0411
+    git push <远程仓库名> <本地分支名称>
+
+
+
+
+git branch //本地分支
+git branch -r //远程分支
+git branch -a //本地和远程
+git branch <name> //基于当前分支末梢新建分支但并不切换分支
+git checkout -b <name> //基于当前分支末梢新建分支并切换至该分支
+git checkout <name> //切换分支
+git branch -d <name> //删除本地分支
+git pull <仓库名> <远程分支>:<本地分支>  :后省略则是当前分支
