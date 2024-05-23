@@ -2,6 +2,8 @@ import torch
 from torch.utils.data import DataLoader
 
 
+torch.log(1,2)
+
 class MyDataLoader(torch.utils.data.Dataset):
     def __init__(self, data, label):
         self.data = data
