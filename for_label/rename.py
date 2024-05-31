@@ -14,7 +14,7 @@ for i in range(143):
 
 
 # old = r"D:\cc"
-
+#
 # for file in os.listdir(old):
 #     os.rename(os.path.join(old, file), os.path.join(old, str(num)))
 #     num = num + 1

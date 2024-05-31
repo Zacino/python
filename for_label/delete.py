@@ -10,7 +10,7 @@ h = 0
 a = ''
 b = ''
 dele = []
-pathh = r"D:\睡觉"
+pathh = r"D:\安全绳\images"
 # dele.remove(1)
 for filenames in os.walk(
         pathh):  # for dirpath,dirnames,filenames in os.walk(path)三元组，dirpath为搜索目录，dirnames（list）,为搜索目录下所有文件夹，filenames(list)为搜索目录下所有文件，这里用法其实很不好，filenames其实就是这个三元组，然后再将第三个提取出来，代码可读性太差了。
