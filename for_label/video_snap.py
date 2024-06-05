@@ -14,11 +14,11 @@ from PIL import Image
 
 # 视频路径
 # VIDEO_DIR = r"D:\Project\01_to_be_done\手机\video"
-VIDEO_DIR = r"D:\a"
+VIDEO_DIR = r"D:\aqm_bp"
 # 每隔多少帧截一次
 SNAP_INT = 10
 # 截图存储路径, 不能有中文
-SNAP_PATH = r"D:\a\images"
+SNAP_PATH = r"D:\c"
 
 def remove_chinese_characters(text):
     pattern = re.compile(r'[\u4e00-\u9fa5]+')  # 匹配中文字符的正则表达式

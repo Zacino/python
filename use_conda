@@ -1,0 +1,47 @@
+前言
+  一个python环境中需要有一个解释器，和一个包集合
+  如果我在本地只有一个python环境那我所有程序用到的各种包都只能放到同一个环境中，导致环境混乱
+  我们不安装Anaconda的话，我们安装第三方库就必须要用pip install xxx去安装，
+  当我们安装的库多了，就会形成文件紊乱和繁杂问题。而且pip install方法会默认把库安装在同一个路径中
+
+ conda
+  conda是一个包管理器，环境管理器，能够创建一个虚拟环境
+
+  # 创建环境命令
+    conda create -n 环境名 -y
+  # 删除
+    conda remove -n 环境名 --all -y
+  # 指定python版本
+    conda create -n 环境名 python=x.x.x -y
+  # 获取python版本
+    python --version
+  # 查看所有环境
+    conda info --envs  /  conda env list
+  # 在当前环境中安装包
+    conda install 包名称
+  # 指定版本号
+    conda install 包名称=version
+  # 在指定环境中安装包
+    conda install -n 环境名 包名称
+  # 查看环境现有的包
+    conda list  /  pip list
+
+
+
+jupyter notebook
+    ipynb文件不仅保存代码，还保存了每个单元格的输出。 --确保关闭文件之前保存文件。
+  # 基础操作
+    左边[num]表示运行了几次
+    .后按tab可查看方法
+    shift + tab 查看函数参数
+
+Jupyter 在一个名为 kernel 的单独进程中运行用户的代码
+  如何在jupyter切换conda虚拟环境？
+  1、activate某个环境：conda activate _name_
+  2、在这个环境下安装ipykernel：conda install ipykernel
+  3、输入：python -m ipykernel install --name _name_
+  执行完这个语句之后，会自动在目录【C:\ProgramData\jupyter\kernels】(类似)生成一个【adda】文件夹，
+  里面有kernel.json文件.打开jupyter notebook就能看到添加的虚拟环境了
+
+  #魔术命令
+

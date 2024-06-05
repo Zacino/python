@@ -39,20 +39,49 @@ all_features = pd.get_dummies(all_features, dummy_na=True)
 # 每一行数据就是一个样本
 n_train = train_data.shape[0]
 # 为什么使用numpy  python list中保存的是对象指针，对于数值运算很低效
-train_features = np.array(all_features[:n_train].values, dtype=np.float32)
-test_features = np.array(all_features[n_train:].values, dtype=np.float32)
+train_features = torch.tensor(all_features[:n_train].values, dtype=np.float32)
+test_features = torch.tensor(all_features[n_train:].values, dtype=np.float32)
 # reshape 为-1时是让系统主动计算
-train_labels = np.array(train_data.SalePrice.values.reshape(-1, 1), dtype=np.float32)
+train_labels = torch.tensor(train_data.SalePrice.values.reshape(-1, 1), dtype=np.float32)
 
 
 """
     训练
 """
 
-loss = nn.MSELoss()  # l2损失
+loss = nn.MSELoss()  # l2损失 均方误差  1/n求和（y-y'）^2
+in_features = train_features.shape[1]
+
 
 def get_net():
-    net = nn.Sequential()
-    net.add(nn.Dense(1))
-    net.initialize()
-    return net
+    net = nn.Sequential(nn.Linear(in_features,1))
+
+
+# 均方根误差
+def log_rmse(net, features, labels):
+    # 为了在取对数时进一步稳定该值，将小于1的值设置为1
+    #  torch.clamp(input, min, max, out=None) 输入input张量每个元素的范围限制到区间 [min,max]
+    # float('inf') 正无穷
+    clipped_preds = torch.clamp(net(features), 1, float('inf'))
+    rmse = torch.sqrt(loss(torch.log(clipped_preds), torch.log(labels)))
+    return rmse.item()  # .item()用于在只包含一个元素的tensor中提取值 否则的话使用.tolist()
+
+
+def train(net, train_features, train_labels, test_features, test_labels,
+          num_epochs, learning_rate, weight_decay, batch_size):
+    train_ls, test_ls = [], []
+    train_iter = d2l.load_array((train_features, train_labels), batch_size)
+    # 这里使用的是Adam优化算法
+    optimizer = torch.optim.Adam(net.parameters(),
+                                 lr = learning_rate,
+                                 weight_decay = weight_decay)
+    for epoch in range(num_epochs):
+        for X, y in train_iter:
+            optimizer.zero_grad()
+            l = loss(net(X), y)
+            l.backward()
+            optimizer.step()
+        train_ls.append(log_rmse(net, train_features, train_labels))
+        if test_labels is not None:
+            test_ls.append(log_rmse(net, test_features, test_labels))
+    return train_ls, test_ls
