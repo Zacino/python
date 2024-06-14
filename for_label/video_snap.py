@@ -14,7 +14,7 @@ from PIL import Image
 
 # 视频路径
 # VIDEO_DIR = r"D:\Project\01_to_be_done\手机\video"
-VIDEO_DIR = r"D:\aqm_bp"
+VIDEO_DIR = r"D:\ccgf"
 # 每隔多少帧截一次
 SNAP_INT = 10
 # 截图存储路径, 不能有中文

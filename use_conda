@@ -35,6 +35,10 @@ jupyter notebook
     .后按tab可查看方法
     shift + tab 查看函数参数
 
+  # 更改启动目录
+    jupyter notebook --generate-config
+    c.NotebookApp.notebook_dir = '你想要放的文件夹'
+
 Jupyter 在一个名为 kernel 的单独进程中运行用户的代码
   如何在jupyter切换conda虚拟环境？
   1、activate某个环境：conda activate _name_
@@ -44,4 +48,9 @@ Jupyter 在一个名为 kernel 的单独进程中运行用户的代码
   里面有kernel.json文件.打开jupyter notebook就能看到添加的虚拟环境了
 
   #魔术命令
+
+
+安装gpu cuda
+    linux： source activate base
+    去官网用pip，别用conda install
 
